@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Performance Analysis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('performance') }}" class="active">Performance Analysis</a></li>
+        </ul>
+    </nav>
+    
+    <center><h1>Performance Analysis</h1></center>
+    <div class="image-container">
+        <h2>Confusion Matrix</h2>
+        <img src="{{ url_for('static', filename='outputs/confusion_matrix.png') }}" alt="Confusion Matrix" style="max-width: 400px; max-height: 400px;">
+    </div>
+    <div class="image-container">
+        <h2>Model Loss</h2>
+        <img src="{{ url_for('static', filename='outputs/loss.png') }}" alt="Model Loss" style="max-width: 400px; max-height: 400px;">
+    </div>
+    <div class="image-container">
+        <h2>Model Accuracy</h2>
+        <img src="{{ url_for('static', filename='outputs/accuracy.png') }}" alt="Model Accuracy" style="max-width: 400px; max-height: 400px;">
+    </div>
+
+    <div class="performance-metrics">
+        <h2>Performance Metrics</h2>
+        <p id="accuracy"></p>
+        <p id="precision"></p>
+        <p id="recall"></p>
+        <!-- <p id="f_measure"></p> -->
+    </div>
+
+    <script>
+        fetch('{{ url_for("static", filename="outputs/results.json") }}')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('accuracy').textContent = 'Accuracy: ' + data.accuracy.toFixed(2);
+                document.getElementById('precision').textContent = 'Precision: ' + data.precision.toFixed(2);
+                document.getElementById('recall').textContent = 'Recall: ' + data.recall.toFixed(2);
+                // document.getElementById('f_measure').textContent = 'F-measure: ' + data.f2_score;
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+-e .
+flask
+scikit-learn
+matplotlib
+tqdm
+torchvision
+torch
+opencv-python

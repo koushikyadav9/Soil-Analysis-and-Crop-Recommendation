@@ -1,0 +1,10 @@
+EXPERIMENT_NAME = "soil_analysis_and_crop_recommendation"
+BATCH_SIZE = 8
+IMAGE_SIZE = 224
+ROOT_DIR = 'dataset'
+VALID_SPLIT = 0.1
+NUM_WORKERS = 0 
+DEVICE = "cpu"
+CLASS_NAMES = ['Black Soil', 'Cinder Soil', 'Laterite Soil','Peat Soil','Yellow Soil']
+LEARNING_RATE = 0.001
+EPOCHS = 50
